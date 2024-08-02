@@ -90,5 +90,10 @@ describe("deepCopy 함수 테스트", () => {
     expect(set === copiedSet).toBe(false);
     expect(set instanceof Set).toBe(true);
     expect(copiedSet instanceof Set).toBe(true);
+
+    set.add("c");
+
+    expect(set2.has("c")).toBe(true);
+    expect(copiedSet.has("c")).toBe(false);
   });
 });
