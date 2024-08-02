@@ -4,6 +4,8 @@ const deepCopy = (data) => {
   if (typeof data !== "object") {
     return data;
   }
+
+  return { ...data };
 };
 
 export default deepCopy;
