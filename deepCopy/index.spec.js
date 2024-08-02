@@ -60,4 +60,24 @@ describe("deepCopy 함수 테스트", () => {
     expect(c[0] === 4).toBe(true);
     expect(copiedArr[0] === 4).toBe(false);
   });
+
+  it("맵 데이터를 인자로 넘겨 반환된 데이터는 원본과 달라야 한다.", () => {
+    const map = new Map([
+      [{ x: 1 }, 1],
+      ["b", 2],
+      [1, "10"],
+    ]);
+    const map2 = map;
+    const copiedMap = deepCopy(map);
+
+    expect(map === map2).toBe(true);
+    expect(map === copiedMap).toBe(false);
+    expect(map instanceof Map).toBe(true);
+    expect(copiedMap instanceof Map).toBe(true);
+
+    map.set("b", 2);
+
+    expect(map2.get("b") === 2).toBe(true);
+    expect(copiedMap.get("b") === 2).toBe(false);
+  });
 });
