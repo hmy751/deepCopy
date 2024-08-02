@@ -80,4 +80,15 @@ describe("deepCopy 함수 테스트", () => {
     expect(map2.get("b") === 2).toBe(true);
     expect(copiedMap.get("b") === 2).toBe(false);
   });
+
+  it("셋 데이터를 인자로 넘겨 반환된 데이터는 원본과 달라야 한다.", () => {
+    const set = new Set([[{ x: 1 }], ["b"], [1]]);
+    const set2 = set;
+    const copiedSet = deepCopy(set);
+
+    expect(set === set2).toBe(true);
+    expect(set === copiedSet).toBe(false);
+    expect(set instanceof Set).toBe(true);
+    expect(copiedSet instanceof Set).toBe(true);
+  });
 });

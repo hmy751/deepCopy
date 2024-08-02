@@ -19,6 +19,16 @@ const deepCopy = (data) => {
     return newMap;
   }
 
+  if (data instanceof Set) {
+    const newSet = new Set();
+
+    for (const key of Object.keys(data)) {
+      newSet.add(key);
+    }
+
+    return newSet;
+  }
+
   const newObj = {};
 
   for (const key of Object.keys(data)) {
