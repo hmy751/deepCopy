@@ -5,5 +5,6 @@ describe("deepCopy 함수 테스트", () => {
     expect(deepCopy(1) === 1).toBe(true);
     expect(deepCopy("1") === "1").toBe(true);
     expect(deepCopy(true) === true).toBe(true);
+    expect(deepCopy(null) === null).toBe(true);
   });
 });
