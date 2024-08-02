@@ -7,4 +7,14 @@ describe("deepCopy 함수 테스트", () => {
     expect(deepCopy(true) === true).toBe(true);
     expect(deepCopy(null) === null).toBe(true);
   });
+
+  it("객체 데이터를 인자로 넘겨 반환된 객체는 원본과 달라야 한다.", () => {
+    const obj = { a: 1 };
+    const obj2 = obj;
+    const copiedObj = deepCopy(obj2);
+
+    expect(obj === obj2).toBe(true);
+    expect(obj === copiedObj).toBe(false);
+    expect(JSON.stringify(copiedObj) === JSON.stringify(obj)).toBe(true);
+  });
 });
