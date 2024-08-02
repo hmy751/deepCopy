@@ -9,7 +9,13 @@ const deepCopy = (data) => {
     return [...data];
   }
 
-  return { ...data };
+  const newObj = {};
+
+  for (const key of Object.keys(data)) {
+    newObj[key] = deepCopy(data[key]);
+  }
+
+  return newObj;
 };
 
 export default deepCopy;
