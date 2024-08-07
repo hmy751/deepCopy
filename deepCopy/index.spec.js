@@ -6,6 +6,8 @@ describe("deepCopy 함수 테스트", () => {
     expect(deepCopy("1") === "1").toBe(true);
     expect(deepCopy(true) === true).toBe(true);
     expect(deepCopy(null) === null).toBe(true);
+    expect(deepCopy() === undefined).toBe(true);
+    expect(deepCopy(undefined) === undefined).toBe(true);
   });
 
   it("객체 데이터를 인자로 넘겨 반환된 객체는 원본과 달라야 한다.", () => {
@@ -47,7 +49,7 @@ describe("deepCopy 함수 테스트", () => {
   });
 
   it("배열 데이터를 인자로 넘겨 반환된 배열은 원본과 달라야 한다.", () => {
-    const c = [1, 2, 3];
+    const c = [1, 2, [2, 3]];
     const d = c;
     const copiedArr = deepCopy(d);
 
@@ -59,6 +61,11 @@ describe("deepCopy 함수 테스트", () => {
 
     expect(c[0] === 4).toBe(true);
     expect(copiedArr[0] === 4).toBe(false);
+
+    d[2][0] = 1;
+
+    expect(c[2][0] === 1).toBe(true);
+    expect(copiedArr[2][0] === 1).toBe(false);
   });
 
   it("맵 데이터를 인자로 넘겨 반환된 데이터는 원본과 달라야 한다.", () => {
@@ -72,6 +79,7 @@ describe("deepCopy 함수 테스트", () => {
 
     expect(map === map2).toBe(true);
     expect(map === copiedMap).toBe(false);
+    expect(JSON.stringify(map) === JSON.stringify(copiedMap)).toBe(true);
     expect(map instanceof Map).toBe(true);
     expect(copiedMap instanceof Map).toBe(true);
 
@@ -88,6 +96,7 @@ describe("deepCopy 함수 테스트", () => {
 
     expect(set === set2).toBe(true);
     expect(set === copiedSet).toBe(false);
+    expect(JSON.stringify(set) === JSON.stringify(copiedSet)).toBe(true);
     expect(set instanceof Set).toBe(true);
     expect(copiedSet instanceof Set).toBe(true);
 

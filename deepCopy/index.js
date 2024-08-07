@@ -1,12 +1,18 @@
 const deepCopy = (data) => {
-  if (data === null) return data;
+  if (!data) return data;
 
   if (typeof data !== "object") {
     return data;
   }
 
   if (Array.isArray(data)) {
-    return [...data];
+    const newArr = [];
+
+    for (const [index, value] of Object.entries(data)) {
+      newArr[index] = deepCopy(value);
+    }
+
+    return newArr;
   }
 
   if (data instanceof Map) {
@@ -22,8 +28,8 @@ const deepCopy = (data) => {
   if (data instanceof Set) {
     const newSet = new Set();
 
-    for (const key of Object.keys(data)) {
-      newSet.add(key);
+    for (const item of data) {
+      newSet.add(deepCopy(item));
     }
 
     return newSet;
