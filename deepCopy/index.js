@@ -1,5 +1,5 @@
 const deepCopy = (data) => {
-  if (data === null) return data;
+  if (!data) return data;
 
   if (typeof data !== "object") {
     return data;
