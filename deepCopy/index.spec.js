@@ -6,6 +6,8 @@ describe("deepCopy 함수 테스트", () => {
     expect(deepCopy("1") === "1").toBe(true);
     expect(deepCopy(true) === true).toBe(true);
     expect(deepCopy(null) === null).toBe(true);
+    expect(deepCopy() === undefined).toBe(true);
+    expect(deepCopy(undefined) === undefined).toBe(true);
   });
 
   it("객체 데이터를 인자로 넘겨 반환된 객체는 원본과 달라야 한다.", () => {
