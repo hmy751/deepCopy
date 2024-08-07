@@ -28,8 +28,8 @@ const deepCopy = (data) => {
   if (data instanceof Set) {
     const newSet = new Set();
 
-    for (const key of Object.keys(data)) {
-      newSet.add(key);
+    for (const item of data) {
+      newSet.add(deepCopy(item));
     }
 
     return newSet;
