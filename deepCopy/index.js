@@ -6,7 +6,13 @@ const deepCopy = (data) => {
   }
 
   if (Array.isArray(data)) {
-    return [...data];
+    const newArr = [];
+
+    for (const [index, value] of Object.entries(data)) {
+      newArr[index] = deepCopy(value);
+    }
+
+    return newArr;
   }
 
   if (data instanceof Map) {
