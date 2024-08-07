@@ -47,7 +47,7 @@ describe("deepCopy 함수 테스트", () => {
   });
 
   it("배열 데이터를 인자로 넘겨 반환된 배열은 원본과 달라야 한다.", () => {
-    const c = [1, 2, 3];
+    const c = [1, 2, [2, 3]];
     const d = c;
     const copiedArr = deepCopy(d);
 
@@ -59,6 +59,11 @@ describe("deepCopy 함수 테스트", () => {
 
     expect(c[0] === 4).toBe(true);
     expect(copiedArr[0] === 4).toBe(false);
+
+    d[2][0] = 1;
+
+    expect(c[2][0] === 1).toBe(true);
+    expect(copiedArr[2][0] === 1).toBe(false);
   });
 
   it("맵 데이터를 인자로 넘겨 반환된 데이터는 원본과 달라야 한다.", () => {
